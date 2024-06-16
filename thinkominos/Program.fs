@@ -224,7 +224,7 @@ becomes
 7. Print each solution.
 *)
 
-do hexes
+do hexes // Step 1
     |> List.map get_all_hex_rotations // Step 2
     |> combine // Step 3
     |> Seq.collect permute // Step 4
