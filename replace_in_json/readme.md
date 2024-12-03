@@ -51,5 +51,5 @@ def get_date () :
 
 with open (sys.argv[1], 'r') as f :
     configuration = json.load (f)
-    print (json.dumps (replace_in_json.replace_in_json (configuration, { 'date' : get_date () }), indent=2))
+    print (json.dumps (replace_in_json.replace_in_json (configuration, { 'date' : get_date () }), indent=4))
 ```
