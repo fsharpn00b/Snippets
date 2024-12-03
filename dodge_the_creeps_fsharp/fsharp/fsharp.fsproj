@@ -1,0 +1,13 @@
+<Project Sdk="Godot.NET.Sdk/4.2.1">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="hud.fs" />
+    <Compile Include="player.fs" />
+    <Compile Include="enemy.fs" />
+    <Compile Include="states.fs" />
+    <Compile Include="main.fs" />
+  </ItemGroup>
+</Project>
