@@ -103,8 +103,9 @@ Can you please create a program in F# for method 3?
 ```
 
 It replied with the program in [openai_o1.fs](openai_o1.fs). I had to do some cleanup. For instance, the
-checkAdjacency function was missing the array indices, but I was able to recreate them from the comments. But
-once cleaned up, the program ran and output the following solutions that agree with mine:
+checkAdjacency function was missing the array indices, but I was able to recreate them from the comments. Also,
+the code is less idiomatic than I would like, as it uses some for loops and mutation. Nonetheless, once cleaned
+up, the program ran and output the following solutions that agree with mine:
 
 ```
 Solution #1: 
