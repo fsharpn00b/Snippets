@@ -1,3 +1,5 @@
+# check_renpy.py
+
 I wrote check_renpy.py because I wanted to run mypy on Python code in .rpy files.
 
 Ren'Py does offer lint and force recompile.
@@ -7,7 +9,7 @@ Lint catches errors like this in an .rpy file:
 ```renpy
 jump no_such_label
 no_such_character "test"
-show chars_tom_small_happy at right with no_such_transition
+show my_char at right with no_such_transition
 ```
 
 Force recompile catches errors like this:
@@ -17,7 +19,7 @@ python early:
     import no_such_module
 ```
 
-However, neither catches errors like this:
+However, neither lint nor force recompile catches errors like this:
 
 ```renpy
 menu:
@@ -27,11 +29,14 @@ menu:
 $ state = day_1_code.no_such_function (state)
 ```
 
-check_renpy.py extracts Python code from the following places in .rpy files:
+check_renpy.py extracts Python code from the following places in .rpy files and saves them to a temporary .py file.
 - `python early`/`init python`/`python` blocks
 - `default` statements
 - Python statements denoted by `$`
 - conditionals (`if`/`elif`/`while`)
+
+It then runs mypy on all .py files in the specified input folder, including the temporary .py file.
+It also runs lint and forced recompile on the Ren'Py project with the specified base folder.
 
 Run check_renpy.py as follows:
 
