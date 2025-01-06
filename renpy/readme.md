@@ -52,14 +52,18 @@ usage: check_renpy.py [-h] [-i [INPUT]] [-o [OUTPUT]] [-ne] [-nm] [-lc LINT LINT
 optional arguments:
   -h, --help            show this help message and exit
   -i [INPUT], --input [INPUT]
-                        Input folder that contains .rpy and .py files for mypy. If not specified, the current folder is used. -ne/--no-mypy overrides this option.
+                        Input folder that contains .rpy and .py files for mypy. If not specified, the current folder
+                        is used. -ne/--no-mypy overrides this option.
   -o [OUTPUT], --output [OUTPUT]
-                        Temporary output file to extract Python code from .rpy files. If not specified, a default name is used. -ne/--no-extract overrides this option.
+                        Temporary output file to extract Python code from .rpy files. If not specified, a default
+                        name is used. -ne/--no-extract overrides this option.
   -ne, --no-extract     Do not extract Python code from .rpy files. Overrides -o/--output.
-  -nm, --no-mypy        Do not run mypy on Python files. Implies -ne/--no-extract. Overrides -i/--input and -o/--output.
+  -nm, --no-mypy        Do not run mypy on Python files. Implies -ne/--no-extract. Overrides -i/--input and
+                        -o/--output.
   -lc LINT LINT, --lint LINT LINT
-                        Run lint and compile. The first argument is the path of the folder that contains renpy.sh. The second argument is the base folder of the project. If
-                        not present, lint and compile are skipped.
+                        Run lint and compile. The first argument is the path of the folder that contains renpy.sh.
+                        The second argument is the base folder of the project. If not present, lint and compile are
+                        skipped.
   -s [SCRIPT], --script [SCRIPT]
                         Path of the folder that contains script.rpy. If not specified, the --input folder is used.
 ```
@@ -70,10 +74,12 @@ The first draft of check_renpy.py was written by OpenAI o1. I prompted it as fol
 
 ```
 1. Read all files with the extension ".rpy" in the designated folder and its subfolders.
-2. For each file, extract all Python statements, append them to a list, and write the list out to the designated output file. A Python statement is indicated by any of the following:
+2. For each file, extract all Python statements, append them to a list, and write the list out to the designated
+output file. A Python statement is indicated by any of the following:
 2a. Any text that follows a dollar sign on a given line.
 2b. Any text that follows the distinct word "if" on a given line.
-2c. Any indented block of text that follows a line that contains the distinct word "python", with a colon as the last non-whitespace character in the line. For example:
+2c. Any indented block of text that follows a line that contains the distinct word "python", with a colon as the
+last non-whitespace character in the line. For example:
 init python:
     this line should be extracted
         this line should also be extracted
@@ -82,6 +88,11 @@ this line should not be extracted
 3. Run mypy on the designated output file.
 ```
 
-I initially wrote a much more detailed prompt. For example, for point 2c, I told o1 to record the indentation of the line that contained "python", then look for a line with the same or less indentation, which would tell it the python block had ended. I then realized I might as well be writing the program myself. Functional programmers like to say imperative programming is focused on "how" whereas functional programming is focused on "what". I decided I should try to apply this principle here, and gave o1 the less detailed prompt shown previously. As it turned out, o1 arrived at the same solution I had intended on its own.
+I initially wrote a much more detailed prompt. For example, for point 2c, I told o1 to record the indentation of
+the line that contained "python", then look for a line with the same or less indentation, which would tell it
+the python block had ended. I then realized I might as well be writing the program myself. Functional programmers
+like to say imperative programming is focused on "how" whereas functional programming is focused on "what". I
+decided I should try to apply this principle here, and gave o1 the less detailed prompt shown previously. As it
+turned out, o1 arrived at the same solution I had intended on its own.
 
 I again had to do some cleanup of the code o1 produced, but it mostly involved things I had missed in the prompt.
