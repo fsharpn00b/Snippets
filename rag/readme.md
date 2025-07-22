@@ -1,4 +1,4 @@
-# RAG
+# rag.py
 
 I wrote this script to learn how to use retrieval-augmented generation (RAG).
 
