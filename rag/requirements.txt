@@ -1,0 +1,9 @@
+chromadb
+langchain
+langchain-chroma
+langchain-community
+langchain_ollama
+ollama
+pyyaml
+tiktoken
+unstructured
